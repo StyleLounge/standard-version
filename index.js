@@ -51,6 +51,13 @@ var argv = require('yargs')
     default: "beta",
     global: true
   })
+  .option('actual', {
+    alias: 'a',
+    describe: 'get the actual version',
+    type: 'boolean',
+    default: false,
+    global: true
+  })
   .help()
   .alias('help', 'h')
   .example('$0', 'Update changelog and tag release')
@@ -75,7 +82,10 @@ conventionalRecommendedBump({
     console.error(chalk.red(err.message))
     return
   }
-
+  if (!argv.actual) {
+    console.log(pkg.version);
+    return
+  }
   var newVersion = pkg.version
   if (!argv.firstRelease) {
     if (!argv.preRelease) {
