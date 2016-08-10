@@ -99,12 +99,19 @@ conventionalRecommendedBump({
   } else {
     checkpoint('skip version bump on first release', [], chalk.red(figures.cross))
   }
-
-  outputChangelog(argv, function () {
+  // if not --prerelease create changelog and commit, otherwise only commit the package.json
+  if (!argv.preRelease) {
+    outputChangelog(argv, function () {
+      commit(argv, newVersion, function () {
+        return tag(newVersion, argv)
+      })
+    })
+  } else {
     commit(argv, newVersion, function () {
       return tag(newVersion, argv)
     })
-  })
+  }
+
 })
 
 function outputChangelog (argv, cb) {
