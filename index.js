@@ -46,9 +46,8 @@ var argv = require('yargs')
     global: true
   })
   .option('pre-id', {
-    describe: 'Your pre-release id: e.g. alpha, beta',
+    describe: 'Your pre-release id: e.g. beta, dev',
     type: 'string',
-    default: "beta",
     global: true
   })
   .option('actual', {
