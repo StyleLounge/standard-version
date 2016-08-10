@@ -82,7 +82,7 @@ conventionalRecommendedBump({
     console.error(chalk.red(err.message))
     return
   }
-  if (!argv.actual) {
+  if (argv.actual) {
     console.log(pkg.version);
     return
   }
