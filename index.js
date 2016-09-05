@@ -52,10 +52,6 @@ var argv = require('yargs')
     default: 'beta',
     global: true
   })
-  .help()
-  .example('$0', 'Update changelog and tag release')
-  .example('$0 -m "%s: see changelog for details"', 'Update changelog and tag release with custom commit message')
-  .wrap(97)
   .argv
 
 var chalk = require('chalk')
