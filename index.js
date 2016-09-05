@@ -53,7 +53,6 @@ var argv = require('yargs')
     global: true
   })
   .help()
-  .alias('help', 'h')
   .example('$0', 'Update changelog and tag release')
   .example('$0 -m "%s: see changelog for details"', 'Update changelog and tag release with custom commit message')
   .wrap(97)
@@ -173,7 +172,7 @@ function commit (argv, newVersion, cb) {
 
   exec('git add package.json ' + argv.infile, function (err, stdout, stderr) {
     handleExecError(err, stderr)
-    exec('git commit ' + verify + (argv.sign ? '-S ' : '') + 'package.json ' + argv.infile + ' -m "' + formatCommitMessage(argv.message, newVersion) + '"', function (err, stdout, stderr) {
+    exec('git commit ' + verify + (argv.sign ? '-S ' : '') + 'package.json ' + argv.infile + ' -m "' + formatCommitMessage(argv.message, newVersion) + ' [skip ci]' + '"', function (err, stdout, stderr) {
       handleExecError(err, stderr)
       return cb()
     })
